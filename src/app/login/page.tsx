@@ -14,7 +14,7 @@ const ROLES: { id: Role; label: string; desc: string; icon: any }[] = [
 ]
 
 export default function LoginPage() {
-  const { login } = useAuth()
+  const { login, setRole } = useAuth()
   const router = useRouter()
   const [selectedRole, setSelectedRole] = useState<Role>('owner')
   const [email, setEmail] = useState('')
@@ -129,6 +129,24 @@ export default function LoginPage() {
               {loading ? 'Memverifikasi...' : 'Masuk'}
             </button>
           </form>
+
+          {/* Instant Client Review Button */}
+          <div className="mt-5 pt-5 border-t border-gray-100 text-center">
+            <button
+              type="button"
+              onClick={() => {
+                setRole(selectedRole)
+                router.replace('/')
+              }}
+              className="w-full py-2.5 px-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2"
+            >
+              <span>🚀</span>
+              <span>Langsung Masuk Review Klien (Tanpa Login)</span>
+            </button>
+            <p className="text-[11px] text-gray-400 mt-2">
+              Klien dapat langsung menjelajahi seluruh fitur sesuai peran di atas tanpa mengisi email/password.
+            </p>
+          </div>
         </div>
       </div>
     </div>

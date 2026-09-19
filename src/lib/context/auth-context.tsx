@@ -9,19 +9,27 @@ interface AuthContextType {
   user: User | null
   login: (email: string, password: string, selectedRole?: Role) => Promise<boolean>
   logout: () => void
+  setRole: (role: Role) => void
   isLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>({
+    id: 'u-preview',
+    name: 'Tamu Review (Client)',
+    email: 'client.review@toko.com',
+    role: 'owner'
+  })
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const stored = localStorage.getItem('toko_user')
     if (stored) {
-      try { setUser(JSON.parse(stored)) } catch {}
+      try { 
+        setUser(JSON.parse(stored)) 
+      } catch {}
     }
     setIsLoading(false)
   }, [])
@@ -87,8 +95,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('toko_user')
   }
 
+  const setRole = (newRole: Role) => {
+    const updated: User = user ? { ...user, role: newRole } : {
+      id: 'u-preview',
+      name: 'Tamu Review (Client)',
+      email: 'client.review@toko.com',
+      role: newRole
+    }
+    setUser(updated)
+    localStorage.setItem('toko_user', JSON.stringify(updated))
+  }
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, login, logout, setRole, isLoading }}>
       {children}
     </AuthContext.Provider>
   )

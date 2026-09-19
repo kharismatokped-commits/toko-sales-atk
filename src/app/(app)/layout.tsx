@@ -47,7 +47,7 @@ const ownerNav = [
 ]
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { user, logout, isLoading } = useAuth()
+  const { user, logout, setRole, isLoading } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -125,16 +125,39 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </nav>
 
       <div className="p-3 border-t border-gray-100">
-        <div className="px-3 py-2 mb-1">
+        {/* Quick Review Role Switcher */}
+        <div className="mb-2 p-2 bg-blue-50/70 rounded-lg border border-blue-100">
+          <label className="block text-[10px] font-bold text-blue-900 uppercase tracking-wider mb-1">
+            Ganti Mode Review Klien:
+          </label>
+          <select
+            value={user.role}
+            onChange={(e) => {
+              const newR = e.target.value as any
+              setRole(newR)
+              if (newR === 'sales') router.push('/sales/dashboard')
+              else if (newR === 'supervisor') router.push('/sales/monitor')
+              else router.push('/toko/dashboard')
+            }}
+            className="w-full text-xs font-semibold bg-white border border-blue-200 text-blue-950 rounded px-2 py-1 focus:outline-none"
+          >
+            <option value="owner">🛡️ Mode: Owner (Semua Modul)</option>
+            <option value="kasir">🏪 Mode: Kasir Toko & POS</option>
+            <option value="sales">🛵 Mode: Sales Lapangan</option>
+            <option value="supervisor">👤 Mode: Supervisor</option>
+          </select>
+        </div>
+
+        <div className="px-3 py-1 mb-1">
           <p className="text-sm font-medium text-gray-800">{user.name}</p>
           <p className="text-xs text-gray-500">{user.email}</p>
         </div>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors"
+          className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-xs text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors font-medium"
         >
           <LogOut className="w-4 h-4" />
-          Keluar
+          Keluar / Ganti Akun
         </button>
       </div>
     </>
