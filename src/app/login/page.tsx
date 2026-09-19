@@ -44,8 +44,8 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-14 h-14 bg-white rounded-2xl shadow-lg mb-3">
             <ShoppingBag className="w-7 h-7 text-blue-600" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Toko App</h1>
-          <p className="text-blue-200 text-xs mt-0.5">Sistem Manajemen Toko & Sales ATK</p>
+          <h1 className="text-2xl font-bold text-white tracking-wide">KHALIFA NIAGA</h1>
+          <p className="text-blue-200 text-xs mt-0.5">Distributor & Grosir Alat Tulis Kantor (ATK)</p>
         </div>
 
         {/* Form */}

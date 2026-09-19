@@ -5,8 +5,8 @@ import { StoreProvider } from '@/lib/context/store-context'
 import { ToastProvider } from '@/lib/context/toast-context'
 
 export const metadata: Metadata = {
-  title: 'Toko App — Sistem Manajemen Toko & Sales',
-  description: 'Aplikasi manajemen toko grosir dan sales lapangan',
+  title: 'KHALIFA NIAGA — Sistem Manajemen Toko & Sales ATK',
+  description: 'Aplikasi manajemen toko grosir dan sales lapangan ATK KHALIFA NIAGA',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

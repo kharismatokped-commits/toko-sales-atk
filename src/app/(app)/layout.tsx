@@ -97,8 +97,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <ShoppingBag className="w-5 h-5 text-white" />
         </div>
         <div>
-          <p className="font-semibold text-gray-900 text-sm">Toko App</p>
-          <p className="text-xs text-gray-500">{roleLabel[user.role]}</p>
+          <p className="font-bold text-gray-900 text-sm tracking-tight">KHALIFA NIAGA</p>
+          <p className="text-[11px] text-blue-600 font-medium">{roleLabel[user.role]}</p>
         </div>
       </div>
 
@@ -194,7 +194,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </button>
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-blue-600" />
-            <span className="font-semibold text-gray-900 text-sm">Toko App</span>
+            <span className="font-bold text-gray-900 text-sm tracking-tight">KHALIFA NIAGA</span>
           </div>
         </header>
 
