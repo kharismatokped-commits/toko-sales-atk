@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Link from 'next/link'
 import { useStore } from '@/lib/context/store-context'
 import { useToast } from '@/lib/context/toast-context'
 import { Produk } from '@/lib/types'
 import { formatRupiah } from '@/lib/utils'
-import { Search, Plus, AlertTriangle, CheckCircle, Edit2, Trash2, Package, Tag, ArrowUpDown } from 'lucide-react'
+import { Search, Plus, AlertTriangle, CheckCircle, Edit2, Trash2, Package, Tag, ArrowUpDown, Barcode } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
@@ -159,13 +160,22 @@ export default function StokPage() {
           </h1>
           <p className="text-gray-500 text-xs sm:text-sm">KHALIFA NIAGA · {products.length} item aktif terdaftar</p>
         </div>
-        <button
-          onClick={handleOpenAdd}
-          className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-sm transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          Tambah Produk Baru
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/toko/barcode"
+            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 px-3.5 py-2.5 rounded-xl text-sm font-semibold shadow-xs transition-all"
+          >
+            <Barcode className="w-4 h-4 text-purple-600" />
+            <span>Cetak Barcode</span>
+          </Link>
+          <button
+            onClick={handleOpenAdd}
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-sm transition-all"
+          >
+            <Plus className="w-4 h-4" />
+            Tambah Produk Baru
+          </button>
+        </div>
       </div>
 
       {/* Summary cards */}

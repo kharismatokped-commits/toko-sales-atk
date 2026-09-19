@@ -14,7 +14,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_faster_f3.png",
-    "keterangan": "Diskon Tersedia ‼️ Harga/kotak isi 12pcs 1 ktk 24.500"
+    "keterangan": "Diskon Tersedia ‼️ Harga/kotak isi 12pcs 1 ktk 24.500",
+    "harga_grosir_1": 22500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 20800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-2",
@@ -31,7 +35,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_v1.png",
-    "keterangan": "Diskon Tersedia ‼️ Harga/kotak isi 12 pcs 1 ktk 20.500"
+    "keterangan": "Diskon Tersedia ‼️ Harga/kotak isi 12 pcs 1 ktk 20.500",
+    "harga_grosir_1": 18900,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 17400,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-3",
@@ -48,7 +56,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_v2.png",
-    "keterangan": "PULPEN SNOWMAN V2"
+    "keterangan": "PULPEN SNOWMAN V2",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-4",
@@ -65,7 +77,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_gel_v3.png",
-    "keterangan": "PULPEN SNOWMAN GEL V3"
+    "keterangan": "PULPEN SNOWMAN GEL V3",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-5",
@@ -82,7 +98,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_v4.png",
-    "keterangan": "PULPEN SNOWMAN V4"
+    "keterangan": "PULPEN SNOWMAN V4",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-6",
@@ -99,7 +119,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_v5.png",
-    "keterangan": "Diskon Tersedia"
+    "keterangan": "Diskon Tersedia",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-7",
@@ -116,7 +140,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_v6.png",
-    "keterangan": "PULPEN SNOWMAN V6"
+    "keterangan": "PULPEN SNOWMAN V6",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-8",
@@ -133,7 +161,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_snowman_v8.png",
-    "keterangan": "PULPEN SNOWMAN V8"
+    "keterangan": "PULPEN SNOWMAN V8",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-9",
@@ -150,7 +182,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_hi_tech_premium_va599.png",
-    "keterangan": "PROMO ‼️ Rp 16.000 Rp 19.500"
+    "keterangan": "PROMO ‼️ Rp 16.000 Rp 19.500",
+    "harga_grosir_1": 14700,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 13600,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-10",
@@ -167,7 +203,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_ipen_15.png",
-    "keterangan": "Diskon Tersedia ‼️ Harga/pak isi 12pcs 1 pak 10.000"
+    "keterangan": "Diskon Tersedia ‼️ Harga/pak isi 12pcs 1 pak 10.000",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-11",
@@ -184,7 +224,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_winstar_ws2.png",
-    "keterangan": "1 ktk 10.000 ⬇️ Diskon Tersedia ‼️ 3 ktk 9.200 12ktk..."
+    "keterangan": "1 ktk 10.000 ⬇️ Diskon Tersedia ‼️ 3 ktk 9.200 12ktk...",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-12",
@@ -201,7 +245,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_semi_gel_v111.png",
-    "keterangan": "1 ktk 9.000 ⬇️ diskon tersedia ‼️ 3 ktk 8.200 12 ktk..."
+    "keterangan": "1 ktk 9.000 ⬇️ diskon tersedia ‼️ 3 ktk 8.200 12 ktk...",
+    "harga_grosir_1": 8300,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 7700,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-13",
@@ -218,7 +266,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_m2000_hitam.png",
-    "keterangan": "(isi 12 pcs) ⬇️ 1 pak 7.500 3 pak 7.000 12 pak 6.250"
+    "keterangan": "(isi 12 pcs) ⬇️ 1 pak 7.500 3 pak 7.000 12 pak 6.250",
+    "harga_grosir_1": 6900,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6400,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-14",
@@ -235,7 +287,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_aowa_2_sisi.png",
-    "keterangan": "1 pak isi 10 pcs 1 pak 11.000 3 pak 10.000 12 pak 9.500"
+    "keterangan": "1 pak isi 10 pcs 1 pak 11.000 3 pak 10.000 12 pak 9.500",
+    "harga_grosir_1": 10100,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 9400,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-15",
@@ -252,7 +308,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_st_natural.png",
-    "keterangan": "1 pak isi 5pcs 1 pak 6.500 3 pak 6.000 12 pak 5.500"
+    "keterangan": "1 pak isi 5pcs 1 pak 6.500 3 pak 6.000 12 pak 5.500",
+    "harga_grosir_1": 6000,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-16",
@@ -269,7 +329,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_klik_k35.png",
-    "keterangan": "1 ktk 14.000 ⬇️ Diskon Tersedia ‼️ 3 ktk 13.000 12kt..."
+    "keterangan": "1 ktk 14.000 ⬇️ Diskon Tersedia ‼️ 3 ktk 13.000 12kt...",
+    "harga_grosir_1": 12900,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 11900,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-17",
@@ -286,7 +350,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_test_2.png",
-    "keterangan": "Diskon Tersedia ‼️ Harga/pak isi 12pcs 1 pak 8.000 3..."
+    "keterangan": "Diskon Tersedia ‼️ Harga/pak isi 12pcs 1 pak 8.000 3...",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-18",
@@ -303,7 +371,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_aiai.png",
-    "keterangan": "Diskon Tersedia ‼️ Harga/pak isi 12pcs Bisa Campur..."
+    "keterangan": "Diskon Tersedia ‼️ Harga/pak isi 12pcs Bisa Campur...",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-19",
@@ -320,7 +392,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_kelinci.png",
-    "keterangan": "PULPEN GEL KELINCI (bagian bawah terpotong di screenshot)"
+    "keterangan": "PULPEN GEL KELINCI (bagian bawah terpotong di screenshot)",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-20",
@@ -337,7 +413,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_gel_karakter.png",
-    "keterangan": "1 pak isi 6pcs 1 pak 6.000 3 pak 5.500 12 pak 5.000"
+    "keterangan": "1 pak isi 6pcs 1 pak 6.000 3 pak 5.500 12 pak 5.000",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-21",
@@ -354,7 +434,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_lilin_prince.png",
-    "keterangan": "PULPEN LILIN PRINCE"
+    "keterangan": "PULPEN LILIN PRINCE",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-22",
@@ -371,7 +455,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_ulir_nevada.png",
-    "keterangan": "🏷️*LIHAT PROMO* *1 ktk 6000* *3 ktk 5.500* *12 ktk..."
+    "keterangan": "🏷️*LIHAT PROMO* *1 ktk 6000* *3 ktk 5.500* *12 ktk...",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-23",
@@ -388,7 +476,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_lilin_king.png",
-    "keterangan": "isi 12pcs 1 pak 7.500 3 pak 7.000 12 pak 6.500"
+    "keterangan": "isi 12pcs 1 pak 7.500 3 pak 7.000 12 pak 6.500",
+    "harga_grosir_1": 6900,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6400,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-24",
@@ -405,7 +497,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pulpen_bisa_dihapus.png",
-    "keterangan": "Harga/Lusin : 12pcs"
+    "keterangan": "Harga/Lusin : 12pcs",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-25",
@@ -422,7 +518,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_2b_m2000_biru.png",
-    "keterangan": "🏷️*LIHAT PROMO* *1-2 ktk 6.000* *3-11 ktk 5.500* *..."
+    "keterangan": "🏷️*LIHAT PROMO* *1-2 ktk 6.000* *3-11 ktk 5.500* *...",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-26",
@@ -439,7 +539,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_2b_m2000_hijau.png",
-    "keterangan": "🏷️*LIHAT PROMO* *1-2 ktk 6.000* *3-11 ktk 5.500* *..."
+    "keterangan": "🏷️*LIHAT PROMO* *1-2 ktk 6.000* *3-11 ktk 5.500* *...",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-27",
@@ -456,7 +560,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_2b_m2000_garis.png",
-    "keterangan": "PENSIL 2B M2000 GARIS"
+    "keterangan": "PENSIL 2B M2000 GARIS",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-28",
@@ -473,7 +581,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_2b_m2000_glow.png",
-    "keterangan": "Harga/kotak isi 12pcs 1 ktk 6.500 3 ktk 6.000 12ktk 5...."
+    "keterangan": "Harga/kotak isi 12pcs 1 ktk 6.500 3 ktk 6.000 12ktk 5....",
+    "harga_grosir_1": 6000,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-29",
@@ -490,7 +602,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/spidol_wb_montana.png",
-    "keterangan": "SPIDOL WB MONTANA"
+    "keterangan": "SPIDOL WB MONTANA",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-30",
@@ -507,7 +623,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/spidol_permanen_montana.png",
-    "keterangan": "SPIDOL PERMANEN MONTANA"
+    "keterangan": "SPIDOL PERMANEN MONTANA",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-31",
@@ -524,7 +644,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/spidol_wb_aowa.png",
-    "keterangan": "Spidol WB AOWA"
+    "keterangan": "Spidol WB AOWA",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-32",
@@ -541,7 +665,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/tinta_refill_wb_snowman.png",
-    "keterangan": "🏷️*LIHAT PROMO* 1 - 2 pcs 15.000 3 - 11 pcs 14.000..."
+    "keterangan": "🏷️*LIHAT PROMO* 1 - 2 pcs 15.000 3 - 11 pcs 14.000...",
+    "harga_grosir_1": 13800,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 12800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-33",
@@ -558,7 +686,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_warna_clever_pendek.png",
-    "keterangan": "PENSIL WARNA CLEVER (pendek)"
+    "keterangan": "PENSIL WARNA CLEVER (pendek)",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-34",
@@ -575,7 +707,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_warna_safari_pendek.png",
-    "keterangan": "PENSIL WARNA SAFARI (pendek)"
+    "keterangan": "PENSIL WARNA SAFARI (pendek)",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-35",
@@ -592,7 +728,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_warna_clever_panjang.png",
-    "keterangan": "PENSIL WARNA CLEVER (panjang)"
+    "keterangan": "PENSIL WARNA CLEVER (panjang)",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-36",
@@ -609,7 +749,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/pensil_warna_safari_panjang.png",
-    "keterangan": "PENSIL WARNA SAFARI (panjang)"
+    "keterangan": "PENSIL WARNA SAFARI (panjang)",
+    "harga_grosir_1": 5500,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 5100,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-37",
@@ -626,7 +770,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/spidol_12_warna_kecil.png",
-    "keterangan": "12 Warna/pak"
+    "keterangan": "12 Warna/pak",
+    "harga_grosir_1": 9200,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 8500,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-38",
@@ -643,7 +791,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/crayon_florence.png",
-    "keterangan": "🏷️*LIHAT PROMO* *1 set 8.000* *6 set 6.750* *12 se..."
+    "keterangan": "🏷️*LIHAT PROMO* *1 set 8.000* *6 set 6.750* *12 se...",
+    "harga_grosir_1": 7400,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 6800,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-39",
@@ -660,7 +812,11 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/stabilo_2_sisi.png",
-    "keterangan": "STABILO 2 SISI"
+    "keterangan": "STABILO 2 SISI",
+    "harga_grosir_1": 11000,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 10200,
+    "min_qty_grosir_2": 12
   },
   {
     "id": "atk-40",
@@ -677,6 +833,10 @@
     "supplier_id": "s1",
     "active": true,
     "image": "/images/stabilo_morandi.png",
-    "keterangan": "STABILO MORANDI"
+    "keterangan": "STABILO MORANDI",
+    "harga_grosir_1": 11000,
+    "min_qty_grosir_1": 3,
+    "harga_grosir_2": 10200,
+    "min_qty_grosir_2": 12
   }
 ]

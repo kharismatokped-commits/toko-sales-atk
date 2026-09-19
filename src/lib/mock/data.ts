@@ -1,4 +1,4 @@
-import { User, Produk, Pelanggan, Transaksi, Pembelian, Supplier, Wilayah, Prospek, SalesVisit } from '@/lib/types'
+import { User, Produk, Piutang, Pelanggan, Transaksi, Pembelian, Supplier, Wilayah, Prospek, SalesVisit } from '@/lib/types'
 
 // ─── USERS ────────────────────────────────────────────────────
 export const mockUsers: User[] = [
@@ -834,3 +834,29 @@ export function generateNomorPO(pembelian: Pembelian[]) {
   const seq = String(pembelian.length + 1).padStart(3, '0')
   return `PO-${today}-${seq}`
 }
+
+// ─── PIUTANG (iPOS 5 Fitur Penjualan Tempo) ────────────────────
+export const mockPiutang: Piutang[] = [
+  {
+    id: "piu-1",
+    transaksi_id: "t1",
+    nomor_transaksi: "TRX-20240915-001",
+    pelanggan_id: "c2",
+    pelanggan_nama: "Toko Pak Hasan",
+    total_piutang: 1250000,
+    sisa_piutang: 650000,
+    jatuh_tempo: "2024-10-15",
+    status: "belum_lunas"
+  },
+  {
+    id: "piu-2",
+    transaksi_id: "t3",
+    nomor_transaksi: "TRX-20240918-004",
+    pelanggan_id: "c4",
+    pelanggan_nama: "Minimarket Maju",
+    total_piutang: 2400000,
+    sisa_piutang: 2400000,
+    jatuh_tempo: "2024-10-05",
+    status: "belum_lunas"
+  }
+];

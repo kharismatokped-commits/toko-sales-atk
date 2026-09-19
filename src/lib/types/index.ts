@@ -24,7 +24,11 @@ export interface Produk {
   satuan_jual: string   // e.g. "pcs"
   konversi: number      // 1 karton = N pcs
   harga_beli: number    // per satuan beli
-  harga_jual: number    // per satuan jual
+  harga_jual: number    // per satuan jual (eceran)
+  harga_grosir_1?: number // harga grosir tingkat 1 (misal beli >= 3)
+  min_qty_grosir_1?: number
+  harga_grosir_2?: number // harga grosir tingkat 2 (misal beli >= 12 / 1 karton)
+  min_qty_grosir_2?: number
   stok: number          // dalam satuan jual (pcs)
   stok_minimum: number  // alert threshold
   supplier_id: string
@@ -40,6 +44,7 @@ export interface Pelanggan {
   alamat: string
   tipe: 'eceran' | 'grosir'
   total_pembelian: number
+  total_piutang?: number
   created_at: string
 }
 
@@ -50,6 +55,7 @@ export interface TransaksiItem {
   qty: number
   satuan: string
   harga: number
+  harga_tipe?: 'eceran' | 'grosir_1' | 'grosir_2'
   subtotal: number
 }
 
@@ -67,9 +73,23 @@ export interface Transaksi {
   total: number
   bayar: number
   kembalian: number
-  metode_bayar: 'tunai' | 'transfer' | 'qris'
+  metode_bayar: 'tunai' | 'transfer' | 'qris' | 'kredit'
+  jatuh_tempo?: string  // jika metode_bayar === 'kredit' (piutang toko)
+  status_pembayaran?: 'lunas' | 'belum_lunas'
   status: 'selesai' | 'batal'
   catatan?: string
+}
+
+export interface Piutang {
+  id: string
+  transaksi_id: string
+  nomor_transaksi: string
+  pelanggan_id: string
+  pelanggan_nama: string
+  total_piutang: number
+  sisa_piutang: number
+  jatuh_tempo: string
+  status: 'belum_lunas' | 'lunas'
 }
 
 export interface PembelianItem {

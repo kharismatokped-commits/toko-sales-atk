@@ -1,8 +1,8 @@
 'use client'
 
 import React, { createContext, useContext, useState } from 'react'
-import { Produk, Transaksi, Pelanggan, Pembelian, SalesVisit, Prospek, Supplier, Wilayah, User } from '@/lib/types'
-import { mockProduk, mockTransaksi, mockPelanggan, mockPembelian, mockSalesVisit, mockProspek, mockSuppliers, mockWilayah, mockUsers } from '@/lib/mock/data'
+import { Produk, Transaksi, Pelanggan, Pembelian, SalesVisit, Prospek, Supplier, Wilayah, User, Piutang } from '@/lib/types'
+import { mockProduk, mockTransaksi, mockPelanggan, mockPembelian, mockSalesVisit, mockProspek, mockSuppliers, mockWilayah, mockUsers, mockPiutang } from '@/lib/mock/data'
 
 interface StoreContextType {
   products: Produk[]
@@ -23,6 +23,8 @@ interface StoreContextType {
   setWilayah: React.Dispatch<React.SetStateAction<Wilayah[]>>
   users: User[]
   setUsers: React.Dispatch<React.SetStateAction<User[]>>
+  piutang: Piutang[]
+  setPiutang: React.Dispatch<React.SetStateAction<Piutang[]>>
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined)
@@ -37,6 +39,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [suppliers, setSuppliers] = useState<Supplier[]>(mockSuppliers)
   const [wilayah, setWilayah] = useState<Wilayah[]>(mockWilayah)
   const [users, setUsers] = useState<User[]>(mockUsers)
+  const [piutang, setPiutang] = useState<Piutang[]>(mockPiutang)
 
   return (
     <StoreContext.Provider
@@ -50,6 +53,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         suppliers, setSuppliers,
         wilayah, setWilayah,
         users, setUsers,
+        piutang, setPiutang,
       }}
     >
       {children}

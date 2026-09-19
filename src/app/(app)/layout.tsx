@@ -6,15 +6,18 @@ import Link from 'next/link'
 import { useAuth } from '@/lib/context/auth-context'
 import {
   LayoutDashboard, ShoppingCart, Package, Users, TruckIcon,
-  BarChart3, LogOut, ShoppingBag, Menu, X, MapPin, Calendar, MonitorSmartphone
+  BarChart3, LogOut, ShoppingBag, Menu, X, MapPin, Calendar, MonitorSmartphone,
+  CreditCard, Barcode
 } from 'lucide-react'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
 const tokoNav = [
   { href: '/toko/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/toko/transaksi', label: 'Transaksi', icon: ShoppingCart },
+  { href: '/toko/transaksi', label: 'Transaksi & POS', icon: ShoppingCart },
+  { href: '/toko/piutang', label: 'Buku Piutang', icon: CreditCard },
   { href: '/toko/stok', label: 'Stok Produk', icon: Package },
+  { href: '/toko/barcode', label: 'Cetak Barcode', icon: Barcode },
   { href: '/toko/pelanggan', label: 'Pelanggan', icon: Users },
   { href: '/toko/pembelian', label: 'Pembelian', icon: TruckIcon },
   { href: '/toko/laporan', label: 'Laporan', icon: BarChart3 },
@@ -37,7 +40,9 @@ const supervisorNav = [
 const ownerNav = [
   { href: '/toko/dashboard', label: 'Dashboard Toko', icon: LayoutDashboard },
   { href: '/toko/transaksi', label: 'Transaksi & POS', icon: ShoppingCart },
+  { href: '/toko/piutang', label: 'Buku Piutang', icon: CreditCard },
   { href: '/toko/stok', label: 'Stok Produk ATK', icon: Package },
+  { href: '/toko/barcode', label: 'Cetak Barcode', icon: Barcode },
   { href: '/toko/pelanggan', label: 'Pelanggan', icon: Users },
   { href: '/toko/pembelian', label: 'Pembelian Grosir', icon: TruckIcon },
   { href: '/toko/laporan', label: 'Laporan Omzet', icon: BarChart3 },
