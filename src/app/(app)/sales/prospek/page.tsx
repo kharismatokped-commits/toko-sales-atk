@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from 'react'
 import { useStore } from '@/lib/context/store-context'
-
+import { useToast } from '@/lib/context/toast-context'
 import { useAuth } from '@/lib/context/auth-context'
 import { Prospek } from '@/lib/types'
-import { Search, Plus, Phone, MapPin, Tag } from 'lucide-react'
+import { Search, Plus, Phone, MapPin, Tag, X } from 'lucide-react'
+import { Modal } from '@/components/ui/Modal'
 
 const statusConfig: Record<Prospek['status'], { label: string; color: string }> = {
   baru: { label: 'Baru', color: 'bg-blue-100 text-blue-700' },
@@ -15,15 +16,57 @@ const statusConfig: Record<Prospek['status'], { label: string; color: string }> 
 }
 
 export default function ProspekPage() {
-  const { products, setProducts, transaksi, setTransaksi, pelanggan, setPelanggan, pembelian, setPembelian, salesVisit, setSalesVisit, prospek, setProspek, suppliers, setSuppliers, wilayah, setWilayah, users, setUsers } = useStore()
-
-
+  const { prospek, setProspek, wilayah } = useStore()
+  const { showToast } = useToast()
   const { user } = useAuth()
+
   const [search, setSearch] = useState('')
   const [filterStatus, setFilterStatus] = useState('semua')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Form State
+  const [formData, setFormData] = useState({
+    nama: '',
+    alamat: '',
+    kontak: '',
+    wilayah_id: '',
+    status: 'baru' as Prospek['status'],
+    catatan: ''
+  })
 
   const myWilayah = wilayah.find(w => w.sales_id === user?.id)
   const isSupervisor = user?.role === 'supervisor' || user?.role === 'owner'
+
+  const handleOpenAdd = () => {
+    setFormData({
+      nama: '',
+      alamat: '',
+      kontak: '',
+      wilayah_id: myWilayah?.id || (wilayah[0]?.id || 'w1'),
+      status: 'baru',
+      catatan: ''
+    })
+    setIsModalOpen(true)
+  }
+
+  const handleSaveProspek = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!formData.nama.trim()) return
+
+    const newP: Prospek = {
+      id: 'pr-' + Math.random().toString(36).substring(2, 9),
+      nama: formData.nama,
+      alamat: formData.alamat || 'Alamat belum diatur',
+      kontak: formData.kontak || '-',
+      wilayah_id: formData.wilayah_id || myWilayah?.id || 'w1',
+      status: formData.status,
+      catatan: formData.catatan
+    }
+
+    setProspek(prev => [newP, ...prev])
+    showToast(`Prospek toko "${formData.nama}" berhasil ditambahkan!`, 'success')
+    setIsModalOpen(false)
+  }
 
   const filtered = useMemo(() => {
     return prospek.filter(p => {
@@ -42,7 +85,10 @@ export default function ProspekPage() {
           <h1 className="text-2xl font-bold text-gray-900">Prospek</h1>
           <p className="text-gray-500 text-sm">{filtered.length} prospek {isSupervisor ? 'semua wilayah' : `di ${myWilayah?.nama || ''}`}</p>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+        <button 
+          onClick={handleOpenAdd}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+        >
           <Plus className="w-4 h-4" />
           Tambah Prospek
         </button>
@@ -112,6 +158,122 @@ export default function ProspekPage() {
       {filtered.length === 0 && (
         <div className="py-16 text-center text-gray-400 text-sm">Tidak ada prospek ditemukan</div>
       )}
+
+      {/* Modal Tambah Prospek */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Tambah Data Prospek Baru"
+      >
+        <form onSubmit={handleSaveProspek} className="space-y-4">
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Nama Toko / Usaha / Mitra ATK *
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="Contoh: Toko ATK Ceria Mandiri"
+              value={formData.nama}
+              onChange={e => setFormData({ ...formData, nama: e.target.value })}
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Alamat Lengkap *
+            </label>
+            <textarea
+              required
+              rows={2}
+              placeholder="Contoh: Jl. Salemba Tengah No. 20, Jakarta Pusat"
+              value={formData.alamat}
+              onChange={e => setFormData({ ...formData, alamat: e.target.value })}
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">
+                Kontak / No. WhatsApp
+              </label>
+              <input
+                type="text"
+                placeholder="0812-xxxx-xxxx"
+                value={formData.kontak}
+                onChange={e => setFormData({ ...formData, kontak: e.target.value })}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">
+                Wilayah Sales
+              </label>
+              <select
+                value={formData.wilayah_id}
+                onChange={e => setFormData({ ...formData, wilayah_id: e.target.value })}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
+              >
+                {wilayah.map(w => (
+                  <option key={w.id} value={w.id}>
+                    {w.nama} ({w.sales_nama})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">
+                Status Prospek Awal
+              </label>
+              <select
+                value={formData.status}
+                onChange={e => setFormData({ ...formData, status: e.target.value as any })}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
+              >
+                <option value="baru">Baru</option>
+                <option value="follow_up">Follow Up</option>
+                <option value="converted">Jadi Pelanggan</option>
+                <option value="tidak_aktif">Tidak Aktif</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">
+                Catatan Kebutuhan ATK
+              </label>
+              <input
+                type="text"
+                placeholder="Contoh: Butuh pulpen Faster, spidol whiteboard..."
+                value={formData.catatan}
+                onChange={e => setFormData({ ...formData, catatan: e.target.value })}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-2 pt-2">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(false)}
+              className="flex-1 py-2.5 border border-gray-300 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              className="flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow transition-colors"
+            >
+              Simpan Prospek
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   )
 }

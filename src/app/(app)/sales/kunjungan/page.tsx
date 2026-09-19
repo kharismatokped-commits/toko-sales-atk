@@ -2,15 +2,15 @@
 
 import { useState } from 'react'
 import { useStore } from '@/lib/context/store-context'
-
+import { useToast } from '@/lib/context/toast-context'
 import { useAuth } from '@/lib/context/auth-context'
 import { MapPin, Clock, CheckCircle, FileText, Camera } from 'lucide-react'
 
 export default function KunjunganPage() {
-  const { products, setProducts, transaksi, setTransaksi, pelanggan, setPelanggan, pembelian, setPembelian, salesVisit, setSalesVisit, prospek, setProspek, suppliers, setSuppliers, wilayah, setWilayah, users, setUsers } = useStore()
-
-
+  const { salesVisit, setSalesVisit } = useStore()
+  const { showToast } = useToast()
   const { user } = useAuth()
+
   const [selectedVisit, setSelectedVisit] = useState<string | null>(null)
   const [catatan, setCatatan] = useState('')
   const [hasil, setHasil] = useState<'order' | 'tidak_order' | 'tunda' | ''>('')
@@ -19,12 +19,40 @@ export default function KunjunganPage() {
   const myVisits = salesVisit.filter(v => v.sales_id === user?.id)
 
   const handleCheckin = (visitId: string) => {
+    const jamNow = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
     setCheckedIn(prev => [...prev, visitId])
     setSelectedVisit(visitId)
+    setSalesVisit(prev => prev.map(v => {
+      if (v.id === visitId) {
+        return {
+          ...v,
+          status: 'checkin',
+          jam_checkin: jamNow,
+          lat: -6.1844,
+          lng: 106.8456
+        }
+      }
+      return v
+    }))
+    showToast('Check-in GPS berhasil dicatat pada lokasi toko!', 'success')
   }
 
   const handleSelesai = () => {
-    alert(`Kunjungan selesai!\nHasil: ${hasil || '-'}\nCatatan: ${catatan || '-'}`)
+    if (!selectedVisit) return
+    const currentTarget = salesVisit.find(v => v.id === selectedVisit)
+    setSalesVisit(prev => prev.map(v => {
+      if (v.id === selectedVisit) {
+        return {
+          ...v,
+          status: 'selesai',
+          hasil: hasil || 'order',
+          catatan: catatan || 'Kunjungan selesai dan diserahkan ke sistem.'
+        }
+      }
+      return v
+    }))
+
+    showToast(`Laporan kunjungan ${currentTarget?.prospek_nama || ''} berhasil disimpan!`, 'success')
     setSelectedVisit(null)
     setCatatan('')
     setHasil('')

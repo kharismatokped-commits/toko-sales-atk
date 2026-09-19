@@ -756,43 +756,512 @@ export const mockPembelian: Pembelian[] = [
   },
 ]
 
-// ─── WILAYAH ──────────────────────────────────────────────────
+// Helper tanggal dinamis agar jadwal & kunjungan sales selalu aktif di hari ini
+const now = new Date()
+const getISODate = (offsetDays: number = 0) => {
+  const d = new Date(now)
+  d.setDate(d.getDate() + offsetDays)
+  return d.toISOString().split('T')[0]
+}
+const todayStr = getISODate(0)
+const yesterdayStr = getISODate(-1)
+const twoDaysAgoStr = getISODate(-2)
+const tomorrowStr = getISODate(1)
+const inTwoDaysStr = getISODate(2)
+
+// ─── WILAYAH SALES ATK ─────────────────────────────────────────
 export const mockWilayah: Wilayah[] = [
-  { id: 'w1', nama: 'Wilayah Utara', sales_id: 'u3', sales_nama: 'Ahmad Sales', deskripsi: 'Kec. Cilincing, Koja, Tanjung Priok' },
-  { id: 'w2', nama: 'Wilayah Selatan', sales_id: 'u4', sales_nama: 'Rina Sales', deskripsi: 'Kec. Tebet, Pancoran, Pasar Minggu' },
-  { id: 'w3', nama: 'Wilayah Timur', sales_id: 'u5', sales_nama: 'Doni Sales', deskripsi: 'Kec. Cakung, Duren Sawit, Jatinegara' },
-  { id: 'w4', nama: 'Wilayah Barat', sales_id: 'u6', sales_nama: 'Lina Sales', deskripsi: 'Kec. Grogol, Tambora, Cengkareng' },
+  { 
+    id: 'w1', 
+    nama: 'Wilayah Jakarta Pusat & Utara', 
+    sales_id: 'u3', 
+    sales_nama: 'Ahmad Sales', 
+    deskripsi: 'Sentra Grosir ATK Senen, Salemba, Glodok Plaza, & Kelapa Gading' 
+  },
+  { 
+    id: 'w2', 
+    nama: 'Wilayah Jakarta Selatan', 
+    sales_id: 'u4', 
+    sales_nama: 'Rina Sales', 
+    deskripsi: 'Kawasan Perkantoran TB Simatupang, Tebet, Fatmawati, & Blok M' 
+  },
+  { 
+    id: 'w3', 
+    nama: 'Wilayah Jakarta Timur', 
+    sales_id: 'u5', 
+    sales_nama: 'Doni Sales', 
+    deskripsi: 'Sentra Kampus Rawamangun, Percetakan Matraman, & Sentra Industri Pulogadung' 
+  },
+  { 
+    id: 'w4', 
+    nama: 'Wilayah Jakarta Barat', 
+    sales_id: 'u6', 
+    sales_nama: 'Lina Sales', 
+    deskripsi: 'Kawasan Kampus Grogol, Percetakan Tomang, Sentra Roxy, & Kebon Jeruk' 
+  },
 ]
 
-// ─── PROSPEK ──────────────────────────────────────────────────
+// ─── DATA PROSPEK TOKO & MITRA ATK ─────────────────────────────
 export const mockProspek: Prospek[] = [
-  { id: 'pr1', nama: 'Toko Berkah', alamat: 'Jl. Utara No. 3', kontak: '0812-1234-5678', wilayah_id: 'w1', status: 'follow_up', last_visit: '2024-09-17' },
-  { id: 'pr2', nama: 'Warung Pak Joko', alamat: 'Jl. Utara No. 11', kontak: '0813-8765-4321', wilayah_id: 'w1', status: 'baru' },
-  { id: 'pr3', nama: 'Minimarket Sejati', alamat: 'Jl. Selatan No. 8', kontak: '0821-2345-6789', wilayah_id: 'w2', status: 'converted', last_visit: '2024-09-16' },
-  { id: 'pr4', nama: 'Toko Harapan', alamat: 'Jl. Timur No. 5', kontak: '0819-9876-5432', wilayah_id: 'w3', status: 'follow_up', last_visit: '2024-09-15' },
+  // Wilayah 1 (Ahmad Sales - Pusat & Utara)
+  { 
+    id: 'pr1', 
+    nama: 'Toko Buku & Kitab Al-Falah', 
+    alamat: 'Jl. Kramat Raya No. 42, Senen, Jakarta Pusat', 
+    kontak: '0812-9871-2341 (H. Ridwan)', 
+    wilayah_id: 'w1', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Pelanggan setia. Rutin order pulpen Snowman & buku tulis setiap 2 minggu.'
+  },
+  { 
+    id: 'pr2', 
+    nama: 'Percetakan & Fotocopy Salemba Express', 
+    alamat: 'Jl. Salemba Tengah No. 14, Kenari, Jakarta Pusat', 
+    kontak: '0813-1122-3344 (Pak Gunawan)', 
+    wilayah_id: 'w1', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Kebutuhan tinggi kertas continuous form, lakban cokelat, & spidol marker.'
+  },
+  { 
+    id: 'pr3', 
+    nama: 'Toko ATK Sinar Abadi Glodok', 
+    alamat: 'Komp. Glodok Plaza Blok B No. 12, Mangga Besar', 
+    kontak: '0821-4455-6677 (Koh Handoko)', 
+    wilayah_id: 'w1', 
+    status: 'follow_up', 
+    last_visit: todayStr,
+    catatan: 'Sedang negosiasi harga Grosir 2 untuk pesanan 50 karton perlengkapan arsip.'
+  },
+  { 
+    id: 'pr4', 
+    nama: 'Koperasi Harapan Bangsa School', 
+    alamat: 'Jl. Boulevard Artha Gading No. 8, Kelapa Gading', 
+    kontak: '0818-7788-9900 (Ibu Diana)', 
+    wilayah_id: 'w1', 
+    status: 'baru', 
+    catatan: 'Prospek pengadaan tender perlengkapan ATK siswa ajaran baru.'
+  },
+  { 
+    id: 'pr5', 
+    nama: 'Toko Stationery Jaya Makmur', 
+    alamat: 'Pasar Pagi Mangga Dua Lt. 2 Blok C No. 25', 
+    kontak: '0857-3322-1100 (Pak Binsar)', 
+    wilayah_id: 'w1', 
+    status: 'follow_up', 
+    last_visit: yesterdayStr,
+    catatan: 'Tertarik menjadi agen distribusi pensil 2B & stabilo neon Morandi.'
+  },
+
+  // Wilayah 2 (Rina Sales - Selatan)
+  { 
+    id: 'pr6', 
+    nama: 'Toko Kertas & ATK Prima Selatan', 
+    alamat: 'Jl. Fatmawati Raya No. 25, Cilandak, Jaksel', 
+    kontak: '0812-3344-5566 (Pak Yudi)', 
+    wilayah_id: 'w2', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Langganan tetap. Pengambilan tempo jatuh tempo 30 hari selalu lancar.'
+  },
+  { 
+    id: 'pr7', 
+    nama: 'Kantor Notaris & PPAT Santoso, SH', 
+    alamat: 'Gedung Simatupang Office Tower Lt. 4, Jaksel', 
+    kontak: '0821-9988-7766 (Ibu Maya - GA)', 
+    wilayah_id: 'w2', 
+    status: 'follow_up', 
+    last_visit: todayStr,
+    catatan: 'Kebutuhan bulanan map sneilhecter, kertas segel, dan materai.'
+  },
+  { 
+    id: 'pr8', 
+    nama: 'Toko Buku & ATK Mahasiswa Tebet', 
+    alamat: 'Jl. Tebet Barat Dalam Raya No. 18, Tebet', 
+    kontak: '0877-2233-4455 (Mas Dodi)', 
+    wilayah_id: 'w2', 
+    status: 'follow_up', 
+    last_visit: todayStr,
+    catatan: 'Minta katalog promo pulpen Faster F3 & binder clip Joyko.'
+  },
+  { 
+    id: 'pr9', 
+    nama: 'Lembaga Bimbel & Edukasi Bintang Prestasi', 
+    alamat: 'Jl. Panglima Polim No. 8, Melawai, Jaksel', 
+    kontak: '0813-6655-4433 (Admin Operasional)', 
+    wilayah_id: 'w2', 
+    status: 'baru', 
+    catatan: 'Perlu pasokan spidol whiteboard Snowman refill & penghapus papan.'
+  },
+
+  // Wilayah 3 (Doni Sales - Timur)
+  { 
+    id: 'pr10', 
+    nama: 'Toko Alat Tulis & Fotocopy Rawamangun', 
+    alamat: 'Jl. Paus No. 18 (Dekat UNJ), Rawamangun', 
+    kontak: '0812-7766-5544 (Bang Rizal)', 
+    wilayah_id: 'w3', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Volume penjualan tinggi untuk perlengkapan skripsi & alat tulis kuliah.'
+  },
+  { 
+    id: 'pr11', 
+    nama: 'Percetakan & ATK Al-Hikmah Jatinegara', 
+    alamat: 'Jl. Matraman Raya No. 88, Jatinegara', 
+    kontak: '0819-3322-1144 (Pak Haji Syukur)', 
+    wilayah_id: 'w3', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Pengambilan grosir kartonan untuk binder note & map business file.'
+  },
+  { 
+    id: 'pr12', 
+    nama: 'Toko ATK Barokah Duren Sawit', 
+    alamat: 'Jl. Pahlawan Revolusi No. 4, Duren Sawit', 
+    kontak: '0856-1122-3344 (Ibu Haryati)', 
+    wilayah_id: 'w3', 
+    status: 'follow_up', 
+    catatan: 'Menunggu konfirmasi owner untuk PO perdana paket atk sekolah.'
+  },
+  { 
+    id: 'pr13', 
+    nama: 'Koperasi Karyawan Kawasan Pulogadung', 
+    alamat: 'Kawasan Industri Pulogadung Blok C-5, Cakung', 
+    kontak: '0812-8899-0011 (Pak Hendro - Ketua)', 
+    wilayah_id: 'w3', 
+    status: 'baru', 
+    catatan: 'Telah dikirimkan proposal penawaran grosir perlengkapan ATK pabrik.'
+  },
+
+  // Wilayah 4 (Lina Sales - Barat)
+  { 
+    id: 'pr14', 
+    nama: 'CV Sentra Grafika & Digital Printing', 
+    alamat: 'Jl. Kyai Tapa No. 12 (Dekat Univ. Trisakti), Grogol', 
+    kontak: '0811-9988-2233 (Pak Kevin)', 
+    wilayah_id: 'w4', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Kebutuhan besar lakban cokelat Daimaru, kertas art paper, & cutter Joyko.'
+  },
+  { 
+    id: 'pr15', 
+    nama: 'Toko Alat Tulis Kampus Untar & Trisakti', 
+    alamat: 'Jl. Tawakal Raya No. 3, Tomang, Jakbar', 
+    kontak: '0813-7766-8899 (Ibu Selvi)', 
+    wilayah_id: 'w4', 
+    status: 'converted', 
+    last_visit: todayStr,
+    catatan: 'Minat promo Pulpen Gel Ipen 15 dan stabilo pastel Morandi.'
+  },
+  { 
+    id: 'pr16', 
+    nama: 'Toko Kertas & Stationery Roxy Mas', 
+    alamat: 'ITC Roxy Mas Lt. 3 No. 45, Hasyim Ashari', 
+    kontak: '0858-3344-5566 (Koh Rudy)', 
+    wilayah_id: 'w4', 
+    status: 'follow_up', 
+    catatan: 'Menunggu restock pulpen Faster F3 kartonan minggu depan.'
+  },
+  { 
+    id: 'pr17', 
+    nama: 'Toko Buku & Perlengkapan Sekolah Palmerah', 
+    alamat: 'Jl. Kemanggisan Utama No. 11, Palmerah', 
+    kontak: '0812-4433-2211 (Pak Bambang)', 
+    wilayah_id: 'w4', 
+    status: 'tidak_aktif', 
+    catatan: 'Toko sedang renovasi gedung sampai awal bulan depan.'
+  },
 ]
 
-// ─── SALES VISIT ──────────────────────────────────────────────
+// ─── RIWAYAT & JADWAL KUNJUNGAN SALES (REAL-TIME AKTIF) ────────
 export const mockSalesVisit: SalesVisit[] = [
+  // ── Hari Ini (Ahmad Sales - u3) ──
   {
-    id: 'sv1', sales_id: 'u3', sales_nama: 'Ahmad Sales',
-    prospek_id: 'pr1', prospek_nama: 'Toko Berkah',
-    tanggal: '2024-09-19', jam_checkin: '09:15',
-    lat: -6.1, lng: 106.85,
-    status: 'selesai', hasil: 'order', catatan: 'Ambil 2 karton mie goreng'
+    id: 'sv-ahmad-1',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr1',
+    prospek_nama: 'Toko Buku & Kitab Al-Falah',
+    tanggal: todayStr,
+    jam_checkin: '08:45',
+    lat: -6.1844,
+    lng: 106.8456,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'PO Langsung Disetujui: 10 pak Faster F3, 5 pak Joyko gel, 3 karton map sneilhecter. Total Rp 1.450.000.'
   },
   {
-    id: 'sv2', sales_id: 'u3', sales_nama: 'Ahmad Sales',
-    prospek_id: 'pr2', prospek_nama: 'Warung Pak Joko',
-    tanggal: '2024-09-19',
-    status: 'dijadwalkan'
+    id: 'sv-ahmad-2',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr2',
+    prospek_nama: 'Percetakan & Fotocopy Salemba Express',
+    tanggal: todayStr,
+    jam_checkin: '10:15',
+    lat: -6.1952,
+    lng: 106.8512,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Order 8 rim continuous form & 12 pak Snowman Whiteboard marker. Minta kirim besok pagi.'
   },
   {
-    id: 'sv3', sales_id: 'u4', sales_nama: 'Rina Sales',
-    prospek_id: 'pr3', prospek_nama: 'Minimarket Sejati',
-    tanggal: '2024-09-19', jam_checkin: '10:30',
-    lat: -6.25, lng: 106.82,
-    status: 'selesai', hasil: 'tidak_order', catatan: 'Stok masih penuh, kunjungi lagi minggu depan'
+    id: 'sv-ahmad-3',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr3',
+    prospek_nama: 'Toko ATK Sinar Abadi Glodok',
+    tanggal: todayStr,
+    jam_checkin: '11:30',
+    lat: -6.1432,
+    lng: 106.8155,
+    status: 'checkin',
+    catatan: 'Sedang cek stock display rak toko dan negosiasi harga tier grosir 2 untuk pembelian karton.'
+  },
+  {
+    id: 'sv-ahmad-4',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr4',
+    prospek_nama: 'Koperasi Harapan Bangsa School',
+    tanggal: todayStr,
+    status: 'dijadwalkan',
+    catatan: 'Jadwal temu presentasi katalog ATK semester baru dengan pengurus yayasan pukul 14:00 WIB.'
+  },
+  {
+    id: 'sv-ahmad-5',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr5',
+    prospek_nama: 'Toko Stationery Jaya Makmur',
+    tanggal: todayStr,
+    status: 'dijadwalkan',
+    catatan: 'Follow up penawaran stabilo pastel morandi & cutter kenko pukul 15:45 WIB.'
+  },
+
+  // ── Hari Ini (Rina Sales - u4) ──
+  {
+    id: 'sv-rina-1',
+    sales_id: 'u4',
+    sales_nama: 'Rina Sales',
+    prospek_id: 'pr6',
+    prospek_nama: 'Toko Kertas & ATK Prima Selatan',
+    tanggal: todayStr,
+    jam_checkin: '09:00',
+    lat: -6.2954,
+    lng: 106.7932,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Repeat order grosir: 15 pak binder clip Joyko & 4 lusin correction tape. Nilai PO Rp 920.000.'
+  },
+  {
+    id: 'sv-rina-2',
+    sales_id: 'u4',
+    sales_nama: 'Rina Sales',
+    prospek_id: 'pr7',
+    prospek_nama: 'Kantor Notaris & PPAT Santoso, SH',
+    tanggal: todayStr,
+    jam_checkin: '10:45',
+    lat: -6.2911,
+    lng: 106.8122,
+    status: 'selesai',
+    hasil: 'tidak_order',
+    catatan: 'Stok materai dan kertas segel masih mencukupi hingga akhir bulan. Dijadwalkan kunjungan ulang tgl 5 bulan depan.'
+  },
+  {
+    id: 'sv-rina-3',
+    sales_id: 'u4',
+    sales_nama: 'Rina Sales',
+    prospek_id: 'pr8',
+    prospek_nama: 'Toko Buku & ATK Mahasiswa Tebet',
+    tanggal: todayStr,
+    jam_checkin: '11:45',
+    lat: -6.2288,
+    lng: 106.8533,
+    status: 'checkin',
+    catatan: 'Sedang memeriksa display pulpen gel dan menghitung sisa stok pensil 2B ujian.'
+  },
+  {
+    id: 'sv-rina-4',
+    sales_id: 'u4',
+    sales_nama: 'Rina Sales',
+    prospek_id: 'pr9',
+    prospek_nama: 'Lembaga Bimbel & Edukasi Bintang Prestasi',
+    tanggal: todayStr,
+    status: 'dijadwalkan',
+    catatan: 'Perkenalan brand KHALIFA NIAGA & penawaran paket refill spidol whiteboard.'
+  },
+
+  // ── Hari Ini (Doni Sales - u5) ──
+  {
+    id: 'sv-doni-1',
+    sales_id: 'u5',
+    sales_nama: 'Doni Sales',
+    prospek_id: 'pr10',
+    prospek_nama: 'Toko Alat Tulis & Fotocopy Rawamangun',
+    tanggal: todayStr,
+    jam_checkin: '09:15',
+    lat: -6.1923,
+    lng: 106.8844,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Order 5 karton pulpen Snowman V6 & V8 untuk persiapan tahun ajaran baru. Total Rp 2.850.000.'
+  },
+  {
+    id: 'sv-doni-2',
+    sales_id: 'u5',
+    sales_nama: 'Doni Sales',
+    prospek_id: 'pr11',
+    prospek_nama: 'Percetakan & ATK Al-Hikmah Jatinegara',
+    tanggal: todayStr,
+    jam_checkin: '11:00',
+    lat: -6.2166,
+    lng: 106.8677,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'PO 2 lusin tinta spidol whiteboard & 10 rim kertas HVS A4 80gr.'
+  },
+  {
+    id: 'sv-doni-3',
+    sales_id: 'u5',
+    sales_nama: 'Doni Sales',
+    prospek_id: 'pr12',
+    prospek_nama: 'Toko ATK Barokah Duren Sawit',
+    tanggal: todayStr,
+    status: 'dijadwalkan',
+    catatan: 'Jadwal kunjungan follow up sampel produk ATK pukul 14:30 WIB.'
+  },
+
+  // ── Hari Ini (Lina Sales - u6) ──
+  {
+    id: 'sv-lina-1',
+    sales_id: 'u6',
+    sales_nama: 'Lina Sales',
+    prospek_id: 'pr14',
+    prospek_nama: 'CV Sentra Grafika & Digital Printing',
+    tanggal: todayStr,
+    jam_checkin: '09:30',
+    lat: -6.1688,
+    lng: 106.7899,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Deal pesanan 20 dus lakban cokelat Daimaru 2 inch & 8 karton lem Joyko.'
+  },
+  {
+    id: 'sv-lina-2',
+    sales_id: 'u6',
+    sales_nama: 'Lina Sales',
+    prospek_id: 'pr15',
+    prospek_nama: 'Toko Alat Tulis Kampus Untar & Trisakti',
+    tanggal: todayStr,
+    jam_checkin: '11:15',
+    lat: -6.1711,
+    lng: 106.7922,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Order 30 pak pulpen Gel Ipen 15 dan 25 set stabilo morandi.'
+  },
+  {
+    id: 'sv-lina-3',
+    sales_id: 'u6',
+    sales_nama: 'Lina Sales',
+    prospek_id: 'pr16',
+    prospek_nama: 'Toko Kertas & Stationery Roxy Mas',
+    tanggal: todayStr,
+    status: 'dijadwalkan',
+    catatan: 'Jadwal temu dengan pemilik toko pukul 15:00 WIB.'
+  },
+
+  // ── Riwayat Kemarin (Yesterday) ──
+  {
+    id: 'sv-prev-1',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr2',
+    prospek_nama: 'Percetakan & Fotocopy Salemba Express',
+    tanggal: yesterdayStr,
+    jam_checkin: '09:30',
+    lat: -6.1952,
+    lng: 106.8512,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Pengambilan sampel kertas kalkir dan map folio.'
+  },
+  {
+    id: 'sv-prev-2',
+    sales_id: 'u4',
+    sales_nama: 'Rina Sales',
+    prospek_id: 'pr6',
+    prospek_nama: 'Toko Kertas & ATK Prima Selatan',
+    tanggal: yesterdayStr,
+    jam_checkin: '13:15',
+    lat: -6.2954,
+    lng: 106.7932,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Penyelesaian pembayaran tagihan tempo bulan lalu.'
+  },
+  {
+    id: 'sv-prev-3',
+    sales_id: 'u5',
+    sales_nama: 'Doni Sales',
+    prospek_id: 'pr10',
+    prospek_nama: 'Toko Alat Tulis & Fotocopy Rawamangun',
+    tanggal: yesterdayStr,
+    jam_checkin: '10:00',
+    lat: -6.1923,
+    lng: 106.8844,
+    status: 'selesai',
+    hasil: 'order',
+    catatan: 'Pengiriman katalog fisik ATK semester ganjil.'
+  },
+  {
+    id: 'sv-prev-4',
+    sales_id: 'u6',
+    sales_nama: 'Lina Sales',
+    prospek_id: 'pr14',
+    prospek_nama: 'CV Sentra Grafika & Digital Printing',
+    tanggal: yesterdayStr,
+    jam_checkin: '14:20',
+    lat: -6.1688,
+    lng: 106.7899,
+    status: 'selesai',
+    hasil: 'tidak_order',
+    catatan: 'Pemilik sedang di luar kota, staf minta kembali besok (hari ini).'
+  },
+
+  // ── Jadwal Besok (Tomorrow) ──
+  {
+    id: 'sv-next-1',
+    sales_id: 'u3',
+    sales_nama: 'Ahmad Sales',
+    prospek_id: 'pr3',
+    prospek_nama: 'Toko ATK Sinar Abadi Glodok',
+    tanggal: tomorrowStr,
+    status: 'dijadwalkan',
+    catatan: 'Pengantaran faktur & surat jalan pesanan kartonan.'
+  },
+  {
+    id: 'sv-next-2',
+    sales_id: 'u4',
+    sales_nama: 'Rina Sales',
+    prospek_id: 'pr9',
+    prospek_nama: 'Lembaga Bimbel & Edukasi Bintang Prestasi',
+    tanggal: tomorrowStr,
+    status: 'dijadwalkan',
+    catatan: 'Demo ketahanan spidol whiteboard dan sampel penghapus magnet.'
+  },
+  {
+    id: 'sv-next-3',
+    sales_id: 'u5',
+    sales_nama: 'Doni Sales',
+    prospek_id: 'pr13',
+    prospek_nama: 'Koperasi Karyawan Kawasan Pulogadung',
+    tanggal: tomorrowStr,
+    status: 'dijadwalkan',
+    catatan: 'Meeting lanjutan penetapan supplier resmi ATK 2026.'
   },
 ]
 
