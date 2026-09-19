@@ -29,6 +29,8 @@ export interface Produk {
   stok_minimum: number  // alert threshold
   supplier_id: string
   active: boolean
+  image?: string
+  keterangan?: string
 }
 
 export interface Pelanggan {

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Toko App — Sistem Manajemen Toko & Sales Lapangan
 
-## Getting Started
+Aplikasi web pengganti iPOS 5 Pro untuk toko grosir dengan 2 modul utama.
 
-First, run the development server:
+## Tech Stack
+- **Next.js 14** App Router + TypeScript
+- **Tailwind CSS** — styling
+- **Mock data layer** — siap swap ke Supabase
+
+## Cara Jalankan
 
 ```bash
+cd toko-app
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Akun Demo Login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Role | Email |
+|------|-------|
+| Owner | owner@toko.com |
+| Kasir | kasir@toko.com |
+| Sales (Ahmad) | ahmad@toko.com |
+| Supervisor | eko@toko.com |
 
-## Learn More
+Password bebas (mock auth).
 
-To learn more about Next.js, take a look at the following resources:
+## Struktur Halaman
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Modul Toko (Owner & Kasir)
+| Halaman | Path |
+|---------|------|
+| Dashboard | `/toko/dashboard` |
+| Transaksi (list) | `/toko/transaksi` |
+| Transaksi Baru (POS) | `/toko/transaksi/baru` |
+| Stok Produk | `/toko/stok` |
+| Pelanggan | `/toko/pelanggan` |
+| Pembelian Grosir | `/toko/pembelian` |
+| Laporan | `/toko/laporan` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Modul Sales Lapangan
+| Halaman | Path |
+|---------|------|
+| Dashboard Sales | `/sales/dashboard` |
+| Jadwal Kunjungan | `/sales/jadwal` |
+| Kunjungan + Check-in | `/sales/kunjungan` |
+| Prospek | `/sales/prospek` |
+| Monitor (Supervisor) | `/sales/monitor` |
 
-## Deploy on Vercel
+## Roadmap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [x] **Fase 1** — Fondasi + Modul Toko (mock data)
+- [ ] **Fase 2** — Koneksi Supabase (swap mock → real DB)
+- [ ] **Fase 2b** — Telegram bot notifikasi
+- [ ] **Fase 3** — Google Sheets sync, go-live
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Swap ke Supabase
+
+1. Isi `.env.local`:
+```
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+```
+2. Ganti `src/lib/mock/data.ts` → `src/lib/supabase/queries.ts`
+3. Ganti `src/lib/context/auth-context.tsx` → pakai `@supabase/ssr`
