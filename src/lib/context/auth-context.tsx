@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase/client'
 
 interface AuthContextType {
   user: User | null
-  login: (email: string, password: string) => Promise<boolean>
+  login: (email: string, password: string, selectedRole?: Role) => Promise<boolean>
   logout: () => void
   isLoading: boolean
 }
@@ -26,7 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false)
   }, [])
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string, password: string, selectedRole?: Role): Promise<boolean> => {
     try {
       // 1. Coba login langsung via Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           id: authData.user.id,
           name: userMeta.name || defaultMatch?.name || email.split('@')[0],
           email: authData.user.email || email,
-          role: (userMeta.role as any) || defaultMatch?.role || 'kasir',
+          role: selectedRole || (userMeta.role as any) || defaultMatch?.role || 'kasir',
           wilayah_id: userMeta.wilayah_id || defaultMatch?.wilayah_id
         }
 
@@ -57,10 +57,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // 2. Fallback matching untuk user profil yang terdaftar
     const found = mockUsers.find(u => u.email.toLowerCase() === email.toLowerCase())
-    if (!found) return false
+    if (!found) {
+      // Jika email baru dan ada password, buat session sesuai role terpilih
+      if (email.includes('@') && password.length >= 3) {
+        const newUser: User = {
+          id: 'u-' + Date.now(),
+          name: email.split('@')[0],
+          email: email,
+          role: selectedRole || 'owner'
+        }
+        setUser(newUser)
+        localStorage.setItem('toko_user', JSON.stringify(newUser))
+        return true
+      }
+      return false
+    }
 
-    setUser(found)
-    localStorage.setItem('toko_user', JSON.stringify(found))
+    const finalUser = selectedRole ? { ...found, role: selectedRole } : found
+    setUser(finalUser)
+    localStorage.setItem('toko_user', JSON.stringify(finalUser))
     return true
   }
 

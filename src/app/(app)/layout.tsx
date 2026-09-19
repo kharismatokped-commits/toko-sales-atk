@@ -34,6 +34,18 @@ const supervisorNav = [
   { href: '/toko/laporan', label: 'Laporan', icon: BarChart3 },
 ]
 
+const ownerNav = [
+  { href: '/toko/dashboard', label: 'Dashboard Toko', icon: LayoutDashboard },
+  { href: '/toko/transaksi', label: 'Transaksi & POS', icon: ShoppingCart },
+  { href: '/toko/stok', label: 'Stok Produk ATK', icon: Package },
+  { href: '/toko/pelanggan', label: 'Pelanggan', icon: Users },
+  { href: '/toko/pembelian', label: 'Pembelian Grosir', icon: TruckIcon },
+  { href: '/toko/laporan', label: 'Laporan Omzet', icon: BarChart3 },
+  { href: '/sales/monitor', label: 'Monitoring Sales', icon: MonitorSmartphone },
+  { href: '/sales/jadwal', label: 'Jadwal Kunjungan', icon: Calendar },
+  { href: '/sales/prospek', label: 'Data Prospek', icon: Users },
+]
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { user, logout, isLoading } = useAuth()
   const router = useRouter()
@@ -64,12 +76,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return null
   }
 
-  const navItems = user.role === 'sales' ? salesNav
+  const navItems = user.role === 'owner' ? ownerNav
+    : user.role === 'sales' ? salesNav
     : user.role === 'supervisor' ? supervisorNav
     : tokoNav
 
   const roleLabel: Record<string, string> = {
-    owner: 'Owner', kasir: 'Kasir', sales: 'Sales', supervisor: 'Supervisor'
+    owner: 'Owner (Akses Penuh)', kasir: 'Kasir Toko', sales: 'Sales Lapangan', supervisor: 'Supervisor Sales'
   }
 
   const handleLogout = () => {
