@@ -16,7 +16,8 @@ export default function KunjunganPage() {
   const [hasil, setHasil] = useState<'order' | 'tidak_order' | 'tunda' | ''>('')
   const [checkedIn, setCheckedIn] = useState<string[]>([])
 
-  const myVisits = salesVisit.filter(v => v.sales_id === user?.id)
+  const activeSalesId = (user?.id && ['u3', 'u4', 'u5', 'u6'].includes(user.id)) ? user.id : 'u3'
+  const myVisits = salesVisit.filter(v => v.sales_id === activeSalesId)
 
   const handleCheckin = (visitId: string) => {
     const jamNow = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })

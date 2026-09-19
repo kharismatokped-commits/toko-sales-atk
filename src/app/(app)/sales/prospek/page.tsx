@@ -34,7 +34,8 @@ export default function ProspekPage() {
     catatan: ''
   })
 
-  const myWilayah = wilayah.find(w => w.sales_id === user?.id)
+  const activeSalesId = (user?.id && ['u3', 'u4', 'u5', 'u6'].includes(user.id)) ? user.id : 'u3'
+  const myWilayah = wilayah.find(w => w.sales_id === activeSalesId) || wilayah[0]
   const isSupervisor = user?.role === 'supervisor' || user?.role === 'owner'
 
   const handleOpenAdd = () => {

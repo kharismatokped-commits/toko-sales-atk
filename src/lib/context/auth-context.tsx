@@ -96,14 +96,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const setRole = (newRole: Role) => {
-    const updated: User = user ? { ...user, role: newRole } : {
-      id: 'u-preview',
-      name: 'Tamu Review (Client)',
-      email: 'client.review@toko.com',
-      role: newRole
+    // Cocokkan ke akun mock riil agar semua relasi data (jadwal, kunjungan, wilayah, transaksi) sinkron
+    const matched = mockUsers.find(u => u.role === newRole) || {
+      id: newRole === 'sales' ? 'u3' : newRole === 'supervisor' ? 'u7' : newRole === 'kasir' ? 'u2' : 'u1',
+      name: newRole === 'sales' ? 'Ahmad Sales' : newRole === 'supervisor' ? 'Supervisor Eko' : newRole === 'kasir' ? 'Siti Kasir' : 'Budi Santoso',
+      email: `${newRole}@khalifaniaga.com`,
+      role: newRole,
+      wilayah_id: newRole === 'sales' ? 'w1' : undefined
     }
-    setUser(updated)
-    localStorage.setItem('toko_user', JSON.stringify(updated))
+
+    setUser(matched)
+    localStorage.setItem('toko_user', JSON.stringify(matched))
   }
 
   return (

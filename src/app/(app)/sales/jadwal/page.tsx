@@ -6,15 +6,14 @@ import { useAuth } from '@/lib/context/auth-context'
 import { Calendar, Clock, MapPin, CheckCircle } from 'lucide-react'
 
 export default function JadwalPage() {
-  const { products, setProducts, transaksi, setTransaksi, pelanggan, setPelanggan, pembelian, setPembelian, salesVisit, setSalesVisit, prospek, setProspek, suppliers, setSuppliers, wilayah, setWilayah, users, setUsers } = useStore()
-
-
+  const { salesVisit } = useStore()
   const { user } = useAuth()
-  const isSupervisor = user?.role === 'supervisor'
+  const isSupervisor = user?.role === 'supervisor' || user?.role === 'owner'
 
+  const activeSalesId = (user?.id && ['u3', 'u4', 'u5', 'u6'].includes(user.id)) ? user.id : 'u3'
   const visits = isSupervisor
     ? salesVisit
-    : salesVisit.filter(v => v.sales_id === user?.id)
+    : salesVisit.filter(v => v.sales_id === activeSalesId)
 
   const grouped = visits.reduce<Record<string, typeof visits>>((acc, v) => {
     if (!acc[v.tanggal]) acc[v.tanggal] = []

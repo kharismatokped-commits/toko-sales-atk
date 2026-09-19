@@ -6,14 +6,20 @@ import { useStore } from '@/lib/context/store-context'
 import { MapPin, Clock, CheckCircle, Calendar, TrendingUp, ShoppingBag } from 'lucide-react'
 
 export default function SalesDashboard() {
-  const { products, setProducts, transaksi, setTransaksi, pelanggan, setPelanggan, pembelian, setPembelian, salesVisit, setSalesVisit, prospek, setProspek, suppliers, setSuppliers, wilayah, setWilayah, users, setUsers } = useStore()
-
-
+  const { salesVisit, wilayah } = useStore()
   const { user } = useAuth()
 
-  const myVisits = salesVisit.filter(v => v.sales_id === user?.id)
-  const todayVisits = myVisits.filter(v => v.tanggal === new Date().toISOString().split('T')[0])
-  const currentWilayah = wilayah.find(w => w.sales_id === user?.id)
+  // Pastikan akun sales selalu terikat ke profil sales aktif (default Ahmad Sales jika login tanpa ID spesifik)
+  const activeSalesId = (user?.id && ['u3', 'u4', 'u5', 'u6'].includes(user.id)) ? user.id : 'u3'
+  const myVisits = salesVisit.filter(v => v.sales_id === activeSalesId)
+
+  // Tanggal lokal hari ini YYYY-MM-DD
+  const now = new Date()
+  const localToday = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+  const todayVisits = myVisits.filter(v => v.tanggal === localToday)
+  const displayVisits = todayVisits.length > 0 ? todayVisits : myVisits
+
+  const currentWilayah = wilayah.find(w => w.sales_id === activeSalesId) || wilayah[0]
 
   const selesai = myVisits.filter(v => v.status === 'selesai').length
   const order = myVisits.filter(v => v.hasil === 'order').length
@@ -50,13 +56,13 @@ export default function SalesDashboard() {
           <h2 className="font-semibold text-gray-900">Jadwal Hari Ini</h2>
           <a href="/sales/jadwal" className="text-blue-600 text-sm hover:underline">Lihat semua</a>
         </div>
-        {myVisits.length === 0 ? (
+        {displayVisits.length === 0 ? (
           <div className="py-10 text-center text-gray-400 text-sm">
             Belum ada kunjungan dijadwalkan hari ini
           </div>
         ) : (
           <div className="divide-y divide-gray-50">
-            {myVisits.map(v => (
+            {displayVisits.map(v => (
               <div key={v.id} className="flex items-center gap-4 px-4 py-3">
                 <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
                   v.status === 'selesai' ? 'bg-green-500' :
