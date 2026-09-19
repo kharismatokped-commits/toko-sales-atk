@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { User } from '@/lib/types'
+import { User, Role } from '@/lib/types'
 import { mockUsers } from '@/lib/mock/data'
 import { supabase } from '@/lib/supabase/client'
 
